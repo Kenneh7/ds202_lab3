@@ -1,0 +1,11 @@
+---
+title: "DS202Lab3"
+author: "Kenneth Mendoza"
+date: "September 18, 2019"
+output: html_document
+---
+
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
+head(choco)
+```
