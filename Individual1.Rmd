@@ -9,3 +9,20 @@ output: html_document
 choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
 head(choco)
 ```
+
+##Question Set
+
+##1. Chocolate ratings are distributed normally. With an outlier at a rating of 5.
+```{r}
+hist(choco$Rating, main ="Chocolate Rating")
+```
+
+##2. It seems ratings are not dependent on cacao percentage in a chocolate bar
+```{r}
+plot(choco$Rating, choco$Cocoa.Pct)
+```
+
+##3."Company.Location" is classified as a "factor". This is different than a "character" type as factors are assigned to a numeric level, where characters just compose a string.
+```{r}
+class(choco$Company.Location)
+```
