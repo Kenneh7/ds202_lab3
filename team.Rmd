@@ -7,22 +7,22 @@ output: html_document
 ```{r, eval=FALSE}
 recent_rating = choco[choco$Review.Date>2011,] #Grabs data from choco only if the review date is greater than 2011
 unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 54 countries, 61 levels
-recent_rating$Company.Location = droplevels(recent_rating$Company.Location)
-head(recent_rating)
+recent_rating$Company.Location = droplevels(recent_rating$Company.Location) #drops the extra, unused levels from the data
+head(recent_rating) #should output the first data entry for recent_rating
 cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location) #creates a table with columns: REview date and Company Location
 cross_table #displays table
 which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0) #Displays company locations with a cacao review for every year since 2012
-france_recent = subset(recent_rating,Company.Location =='France')
-uk_recent = subset(recent_rating,Company.Location =='U.K.')
-germany_recent = subset(recent_rating,Company.Location=='Germany')
-par(mfrow=c(2,2))
-color1 = ifelse(france_recent$Rating >median(france_recent$Rating), 'blue', 'green')
-plot(france_recent$Cocoa.Pct ~ france_recent$Review.Date,ylim=c(50,90),col=color1,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "France") 
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('blue','green'),pch=18)
-color2 = ifelse(uk_recent$Rating >median(uk_recent$Rating), 'purple', 'red')
-plot(uk_recent$Cocoa.Pct ~ uk_recent$Review.Date,ylim=c(50,90),col=color2,pch=18,cex=1.5, xlab="Review Date", ylab= "Cocoa Percentage", main= "UK")
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('purple','red'),pch=18)
-color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange', 'yellow')
-plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") 
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18)
+france_recent = subset(recent_rating,Company.Location =='France') #creates a subset table, where company location is only in France
+uk_recent = subset(recent_rating,Company.Location =='U.K.') #creates a subset table, where company location is only in U.K
+germany_recent = subset(recent_rating,Company.Location=='Germany') #creates a subset table, where company location is only in Germany
+par(mfrow=c(2,2)) #sets parameters to 2,2
+color1 = ifelse(france_recent$Rating >median(france_recent$Rating), 'blue', 'green') #if the yearly rating is above the median rating, color returns as blue. Else, the color returns as green.
+plot(france_recent$Cocoa.Pct ~ france_recent$Review.Date,ylim=c(50,90),col=color1,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "France") #plots the cocoa percent and review date for France. Using the above code "color1" as the colors of the points.
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('blue','green'),pch=18) #error, new.plot not called, should output a legend at the bottom right. Output would explain colors of points.
+color2 = ifelse(uk_recent$Rating >median(uk_recent$Rating), 'purple', 'red')#if the yearly rating is above the median rating, color returns as purple. Else, the color returns as red.
+plot(uk_recent$Cocoa.Pct ~ uk_recent$Review.Date,ylim=c(50,90),col=color2,pch=18,cex=1.5, xlab="Review Date", ylab= "Cocoa Percentage", main= "UK")#plots the cocoa percent and review date for UK. Using the above code "color2" as the colors of the points.
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('purple','red'),pch=18) #error, new.plot not called, should output a legend at the bottom right. Output would explain colors of points.
+color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange', 'yellow') #if the yearly rating is above the median rating, color returns as orange. Else, the color returns as yellow.
+plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") #plots the cocoa percent and review date for Germany. Using the above code "color3" as the colors of the points
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18) #error, new.plot not called, should output a legend at the bottom right. Output would explain colors of points.
 ```
