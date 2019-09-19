@@ -5,13 +5,13 @@ date: "September 18, 2019"
 output: html_document
 ---
 ```{r, eval=FALSE}
-recent_rating = choco[choco$Review.Date>2011,]
-unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 
+recent_rating = choco[choco$Review.Date>2011,] #Grabs data from choco only if the review date is greater than 2011
+unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 54 countries, 61 levels
 recent_rating$Company.Location = droplevels(recent_rating$Company.Location)
 head(recent_rating)
-cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location)
-cross_table
-which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0)
+cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location) #creates a table with columns: REview date and Company Location
+cross_table #displays table
+which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0) #Displays company locations with a cacao review for every year since 2012
 france_recent = subset(recent_rating,Company.Location =='France')
 uk_recent = subset(recent_rating,Company.Location =='U.K.')
 germany_recent = subset(recent_rating,Company.Location=='Germany')
