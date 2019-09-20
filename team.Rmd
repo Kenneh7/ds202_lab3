@@ -26,3 +26,11 @@ color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange',
 plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") #plots the cocoa percent and review date for Germany. Using the above code "color3" as the colors of the points
 legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18) #error, new.plot not called, should output a legend at the bottom right. Output would explain colors of points.
 ```
+##2.
+One way I would improve the plots is to add a working legend. The current code for a legend does not work but if it did it would greatly improve on how the graph is interpreted. Another way to see more plots clearly is to see if points are above the average of the company location rather the median. This would be done by altering the "color_" lines and replacing "median()" with "mean()". Using a boxplot also would suffice for understanding the data more clearly. This is done by replacing "plot()" with "boxplot()".
+
+##3.
+```{r, eval=FALSE}
+hist(recent_rating$Review.Date)
+```
+The number of ratings are a normal distrubution from 2012-2017. There are siginificantly less reviews for 2017, this could affect average rating of some certain types of cocao.
