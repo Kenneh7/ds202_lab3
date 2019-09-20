@@ -4,6 +4,10 @@ author: "Kenneth Mendoza"
 date: "September 18, 2019"
 output: html_document
 ---
+Joel Von Behren & Kenny Mendoza
+https://github.com/kenneh7/ds202_lab2
+Kenneh7/DS202_LAB2
+
 ```{r, eval=FALSE}
 recent_rating = choco[choco$Review.Date>2011,] #Grabs data from choco only if the review date is greater than 2011
 unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 54 countries, 61 levels
@@ -34,3 +38,15 @@ One way I would improve the plots is to add a working legend. The current code f
 hist(recent_rating$Review.Date)
 ```
 The number of ratings are a normal distrubution from 2012-2017. There are siginificantly less reviews for 2017, this could affect average rating of some certain types of cocao.
+
+##4
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
+head(choco)
+```
+```{r}
+cocoa$average <- by(cocoa$Rating)
+```
+
+##5
+What company has the highest average rating?
