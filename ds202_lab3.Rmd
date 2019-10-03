@@ -17,24 +17,57 @@ happy <- readRDS("HAPPY.rds")
 names(happy) = tolower(names(happy))
 ```
 
-
+#1
 ```{r,eval=FALSE}
-happy[ happy == "IAP" ] <- NA
-happy[ happy == "DK" ] <- NA
-happy[ happy == "NA" ] <- NA
+happy[ happy == "IAP" ] <- NA #replaces values in PolViews that are "IAP" to NA
+happy[ happy == "DK" ] <- NA #replaces values in PolViews that are "DK" to NA
+happy[ happy == "NA" ] <- NA #replaces values in PolViews that are "NA" to NA
 ```
 
+#2
 ```{r,eval=FALSE}
-typeof(happy$HAPPY)
-typeof(happy$YEAR)
-typeof(happy$AGE)
-typeof(happy$SEX)
-typeof(happy$MARITAL)
-typeof(happy$DEGREE)
-typeof(happy$FINRELA)
-typeof(happy$HEALTH)
-typeof(happy$WTSSALL)
-typeof(happy$PARTYID)
-typeof(happy$POLVIEWS)
+class(happy$HAPPY)
+factor(happy$HAPPY)
+```
+```{r,eval=FALSE}
+class(happy$YEAR)
+```
+```{r,eval=FALSE}
+class(happy$AGE)
 happy[ happy == "89 OR OLDER" ] <- 89
 ```
+
+```{r,eval=FALSE}
+class(happy$SEX)
+```
+
+```{r,eval=FALSE}
+class(happy$MARITAL)
+```
+
+```{r,eval=FALSE}
+class(happy$DEGREE)
+```
+
+```{r,eval=FALSE}
+class(happy$FINRELA)
+```
+
+```{r,eval=FALSE}
+class(happy$HEALTH)
+```
+
+```{r,eval=FALSE}
+class(happy$WTSSALL)
+```
+
+```{r,eval=FALSE}
+class(happy$PARTYID)
+```
+
+```{r,eval=FALSE}
+class(happy$POLVIEWS)
+```
+
+
+#3
