@@ -27,7 +27,7 @@ happy[ happy == "NA" ] <- NA #replaces values in PolViews that are "NA" to NA
 #2
 ```{r,eval=FALSE}
 class(happy$HAPPY)
-factor(happy$HAPPY)
+levels(factor(happy$HAPPY))
 ```
 ```{r,eval=FALSE}
 class(happy$YEAR)
@@ -35,6 +35,7 @@ class(happy$YEAR)
 ```{r,eval=FALSE}
 class(happy$AGE)
 happy[ happy == "89 OR OLDER" ] <- 89
+happy$AGE <- as.numeric(as.character(happy$AGE))
 ```
 
 ```{r,eval=FALSE}
@@ -71,3 +72,34 @@ class(happy$POLVIEWS)
 
 
 #3
+```{r,eval=FALSE}
+unique(happy$HAPPY)
+```
+
+```{r,eval=FALSE}
+unique(happy$SEX)
+```
+
+```{r,eval=FALSE}
+unique(happy$MARITAL)
+```
+
+```{r,eval=FALSE}
+unique(happy$DEGREE)
+```
+
+```{r,eval=FALSE}
+unique(happy$FINRELA)
+```
+
+```{r,eval=FALSE}
+unique(happy$HEALTH)
+```
+
+```{r,eval=FALSE}
+unique(happy$PARTYID)
+```
+
+```{r,eval=FALSE}
+unique(happy$POLVIEWS)
+```
