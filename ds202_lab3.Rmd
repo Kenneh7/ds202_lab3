@@ -22,6 +22,8 @@ names(happy) = tolower(names(happy))
 happy[ happy == "IAP" ] <- NA #replaces values in PolViews that are "IAP" to NA
 happy[ happy == "DK" ] <- NA #replaces values in PolViews that are "DK" to NA
 happy[ happy == "NA" ] <- NA #replaces values in PolViews that are "NA" to NA
+
+head(happy, 10)
 ```
 
 #2
@@ -103,3 +105,47 @@ unique(happy$PARTYID)
 ```{r,eval=FALSE}
 unique(happy$POLVIEWS)
 ```
+
+
+##Part 2
+#1
+
+```{r}
+happy$age <- as.numeric(as.character(happy$age))
+ggplot(data = happy, aes(x = age, color = sex)) + geom_histogram(binwidth = 2) + facet_wrap(~sex) + ggtitle("Number of Survey Takers vs Age")
+
+ggplot(data = happy, aes(x = year)) + geom_histogram(binwidth = 5) + facet_wrap(~sex) + ggtitle("Number of People vs Year")
+```
+
+```{r}
+happy <- happy[complete.cases(happy[, 'happy']), ]
+
+# plot 1
+
+ggplot(data = happy, aes(x = age)) + facet_wrap(~happy) + geom_histogram(binwidth = 1)
+
+#plot 2
+
+ggplot(data = happy, aes(x = degree), stat = 'count') + facet_wrap(~happy) + geom_bar(mapping = aes(fill = degree))
+ + coord_flip() + labs(title = "Happiness Based on Degree Obtained")
+```
+
+```{r}
+# plot 2
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
