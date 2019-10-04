@@ -25,21 +25,120 @@ Now it's important to understand what each column stands for. You can find a cod
 ## Data Cleaning 
 
 Initial exploration revealed that some data processing was needed before we could proceed with further visualization. All missing values were encoded with 'NA' as follows:
-```{r}
-#insert relevant R code for Q1 here
-```
 
-In total there were `....` number of missing values for the following `....` variables. 
+```{r}
+library(classdata)
+happy[ happy == "IAP" ] <- NA #replaces values in PolViews that are "IAP" to NA
+happy[ happy == "DK" ] <- NA #replaces values in PolViews that are "DK" to NA
+happy[ happy == "NA" ] <- NA #replaces values in PolViews that are "NA" to NA
+sum(is.na(happy)) #finds how many variables were replaced with NA
+```
+In total there were `36391` number of missing values for the following `7` variables. 
+
 
 Variables were also cast into the correct type in order to ease data visualization. This was done by:
 ```{r}
-#insert relevant R code for Q2 here
+library(classdata)
+happy[ happy == "89 OR OLDER" ] <- 89
+happy$age <- as.numeric(as.character(happy$age))
+class(happy$age)
 ```
+This was done to change age from a character type to a numeric type. The rest of the variables are the correct type.
+
 
 Factors were also organized into meaningful order as follows: 
-```{r}
-#insert relevant R code for Q3 here
+```{r,eval=FALSE}
+happyhap= happy[order(happy$happy),]
+ggplot(happyhap, aes(happy)) + geom_bar() + labs(title = "Distribution of happiness", 
+  x = "Types of Happiness", 
+  y = "Count", 
+  color = "happy")
 ```
+
+The following code shows a bar graph for the factors of happiness.
+
+```{r,eval=FALSE}
+library(ggplot2)
+happysex = happy[order(happy$sex),]
+ggplot(happysex, aes(sex)) + geom_bar() + labs(title = "Distribution of sex", 
+  x = "Sex", 
+  y = "Count", 
+  color = "sex")
+```
+
+The following code shows a bar graph for the factors of sex.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happymar= happy[order(happy$marital),]
+ggplot(happymar, aes(marital)) + geom_bar() + labs(title = "Distribution of marital status", 
+  x = "Types of marital status", 
+  y = "Count", 
+  color = "marital status")
+```
+
+The following code shows a bar graph for the factors of marital status.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happydeg = happy[order(happy$degree),]
+ggplot(happydeg, aes(degree)) + geom_bar() +labs(title = "Distribution of Educational degrees", 
+  x = "Types of degrees", 
+  y = "Count", 
+  color = "degree")
+```
+
+The following code shows a bar graph for the factors of the education degree obtained.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happyfin = happy[order(happy$finrela),]
+ggplot(happyfin, aes(finrela)) + geom_bar() + labs(title = "Distribution of financial status", 
+  x = "Types of financial statuses", 
+  y = "Count", 
+  color = "Finrela")
+```
+
+The following code shows a bar graph for the factors of financial status.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happyhealth =happy[order(happy$health),]
+ggplot(happyhealth, aes(health)) + geom_bar() + labs(title = "Distribution of Health", 
+  x = "Types of Health", 
+  y = "Count", 
+  color = "health")
+```
+
+The following code shows a bar graph for the factors of health status.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happypart = happy[order(happy$partyid),]
+ggplot(happypart, aes(partyid)) + geom_bar() + labs(title = "Distribution of partyid", 
+  x = "Types of party ID's", 
+  y = "Count", 
+  color = "partyid")
+```
+
+The following code shows a bar graph for the factors of party ID.
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+happypol = happy[order(happy$polviews),]
+ggplot(happypol, aes(polviews)) + geom_bar() + labs(title = "Distribution of political views", 
+  x = "Types of political views", 
+  y = "Count", 
+  color = "polview")
+```
+
+The following code shows a bar graph for the factors of political views.
 
 
 ## Data Exploration 
