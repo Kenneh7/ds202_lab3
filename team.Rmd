@@ -254,13 +254,11 @@ ggplot(happypol, aes(polviews)) + geom_bar()
 ```
 
 The following code shows a bar graph for the factors of political views.
-=======
-unique(happy$POLVIEWS)
-```
 
 
 ##Part 2
-#1
+
+
 
 ```{r}
 happy$age <- as.numeric(as.character(happy$age))
@@ -295,10 +293,3 @@ ggplot(data = happy, aes(x = degree), stat = 'count') + facet_wrap(~happy) + geo
 
 
 
-
-
-
-
-
-
->>>>>>> b5b7917759118943c3bda4df9ddff5748c049ce2
