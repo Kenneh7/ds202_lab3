@@ -186,21 +186,118 @@ summary {
 
 <pre class="r"><code>happy &lt;- readRDS(&quot;HAPPY.rds&quot;)</code></pre>
 <pre class="r"><code>names(happy) = tolower(names(happy))</code></pre>
-<pre class="r"><code>happy[ happy == &quot;IAP&quot; ] &lt;- NA
-happy[ happy == &quot;DK&quot; ] &lt;- NA
-happy[ happy == &quot;NA&quot; ] &lt;- NA</code></pre>
-<pre class="r"><code>typeof(happy$HAPPY)
-typeof(happy$YEAR)
-typeof(happy$AGE)
-typeof(happy$SEX)
-typeof(happy$MARITAL)
-typeof(happy$DEGREE)
-typeof(happy$FINRELA)
-typeof(happy$HEALTH)
-typeof(happy$WTSSALL)
-typeof(happy$PARTYID)
-typeof(happy$POLVIEWS)
-happy[ happy == &quot;89 OR OLDER&quot; ] &lt;- 89</code></pre>
+<div id="section" class="section level1">
+<h1>1</h1>
+<pre class="r"><code>happy[ happy == &quot;IAP&quot; ] &lt;- NA #replaces values in PolViews that are &quot;IAP&quot; to NA
+happy[ happy == &quot;DK&quot; ] &lt;- NA #replaces values in PolViews that are &quot;DK&quot; to NA
+happy[ happy == &quot;NA&quot; ] &lt;- NA #replaces values in PolViews that are &quot;NA&quot; to NA</code></pre>
+<p>Initial exploration revealed that some data processing was needed before we could proceed with further visualization. All missing values were encoded with ‘NA’ as follows:</p>
+<pre class="r"><code>library(classdata)
+happy[ happy == &quot;IAP&quot; ] &lt;- NA #replaces values in PolViews that are &quot;IAP&quot; to NA
+happy[ happy == &quot;DK&quot; ] &lt;- NA #replaces values in PolViews that are &quot;DK&quot; to NA
+happy[ happy == &quot;NA&quot; ] &lt;- NA #replaces values in PolViews that are &quot;NA&quot; to NA
+sum(is.na(happy)) #finds how many variables were replaced with NA</code></pre>
+<pre><code>## [1] 36391</code></pre>
+<p>In total there were <code>36391</code> number of missing values for the following <code>7</code> variables.</p>
+</div>
+<div id="section-1" class="section level1">
+<h1>2</h1>
+<pre class="r"><code>class(happy$happy)
+levels(factor(happy$happy))</code></pre>
+<pre class="r"><code>class(happy$year)</code></pre>
+<pre class="r"><code>class(happy$age)
+happy[ happy == &quot;89 OR OLDER&quot; ] &lt;- 89
+happy$age &lt;- as.numeric(as.character(happy$age))</code></pre>
+<pre class="r"><code>class(happy$sex)</code></pre>
+<pre class="r"><code>class(happy$marital)</code></pre>
+<pre class="r"><code>class(happy$degree)</code></pre>
+<pre class="r"><code>class(happy$finrela)</code></pre>
+<pre class="r"><code>class(happy$health)</code></pre>
+<pre class="r"><code>class(happy$wtssall)</code></pre>
+<pre class="r"><code>class(happy$partyid)</code></pre>
+<pre class="r"><code>class(happy$polviews)</code></pre>
+<p>Variables were also cast into the correct type in order to ease data visualization. This was done by:</p>
+<pre class="r"><code>happy[ happy == &quot;89 OR OLDER&quot; ] &lt;- 89
+happy$age &lt;- as.numeric(as.character(happy$age))
+class(happy$age)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>This was done to change age from a character type to a numeric type. The rest of the variables are the correct type.</p>
+</div>
+<div id="section-2" class="section level1">
+<h1>3</h1>
+<pre class="r"><code>library(ggplot2)
+unique(happy$happy)
+happyhap= happy[order(happy$happy),]
+ggplot(happyhap, aes(happy)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$sex)
+happysex = happy[order(happy$sex),]
+ggplot(happysex, aes(sex)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$marital)
+happymar= happy[order(happy$marital),]
+ggplot(happymar, aes(marital)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$degree)
+happydeg = happy[order(happy$degree),]
+ggplot(happydeg, aes(degree)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$finrela)
+happyfin = happy[order(happy$finrela),]
+ggplot(happyfin, aes(finrela)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$health)
+happyhealth =happy[order(happy$health),]
+ggplot(happyhealth, aes(health)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$partyid)
+happypart = happy[order(happy$partyid),]
+ggplot(happypart, aes(partyid)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$polviews)
+happypol = happy[order(happy$polviews),]
+ggplot(happypol, aes(polviews)) + geom_bar()</code></pre>
+<pre class="r"><code>library(ggplot2)
+unique(happy$happy)
+happyhap= happy[order(happy$happy),]
+ggplot(happyhap, aes(happy)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of happiness.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$sex)
+happysex = happy[order(happy$sex),]
+ggplot(happysex, aes(sex)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of sex.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$marital)
+happymar= happy[order(happy$marital),]
+ggplot(happymar, aes(marital)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of marital status.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$degree)
+happydeg = happy[order(happy$degree),]
+ggplot(happydeg, aes(degree)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of the education degree obtained.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$finrela)
+happyfin = happy[order(happy$finrela),]
+ggplot(happyfin, aes(finrela)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of financial status.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$health)
+happyhealth =happy[order(happy$health),]
+ggplot(happyhealth, aes(health)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of health status.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$partyid)
+happypart = happy[order(happy$partyid),]
+ggplot(happypart, aes(partyid)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of party ID.</p>
+<pre class="r"><code>library(ggplot2)
+unique(happy$polviews)
+happypol = happy[order(happy$polviews),]
+ggplot(happypol, aes(polviews)) + geom_bar()</code></pre>
+<p>The following code shows a bar graph for the factors of political views.</p>
+</div>
 
 
 
